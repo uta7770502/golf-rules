@@ -93,10 +93,10 @@
         {name:"バンカー", icon:""},},
 
     function getCount(key){
-  // null の場合は 0 にする
+  // null や NaN の場合は 0 にする
   return parseInt(localStorage.getItem("kw_"+key)) || 0;
 }
-
+        
 function addCount(key){
   const now = getCount(key) + 1;
   localStorage.setItem("kw_"+key, now);
@@ -106,23 +106,20 @@ function renderKeywords(){
   const grid = document.getElementById("keyword-grid");
   if(!grid) return;
 
-  // 使用回数順にソートしてTOP6を取得
   const sorted = [...keywords]
-    .map(k => ({...k, count: getCount(k.name)}))
-    .sort((a,b) => b.count - a.count)
-    .slice(0,6);
+    .map(k => ({...k, count: getCount(k.name)}))  // countを追加
+    .sort((a,b) => b.count - a.count)             // 使用回数順にソート
+    .slice(0,6);                                  // TOP6だけ残す
 
-  // 初期化
-  grid.innerHTML = "";
+  grid.innerHTML = ""; // 初期化
 
-  // ボタン生成
   sorted.forEach(k => {
     const btn = document.createElement("button");
     btn.className = "filter-btn";
     btn.textContent = k.name;
     btn.addEventListener("click", () => {
-      addCount(k.name);     // カウント追加
-      renderKeywords();     // 再描画
+      addCount(k.name);
+      renderKeywords(); // 再描画
       const filtered = rules.filter(r =>
         (r.name && r.name.includes(k.name)) ||
         (r.detail && r.detail.includes(k.name))
