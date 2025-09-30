@@ -80,7 +80,7 @@
 
     <section id="popular-keywords" class="home-block">
       <h2>人気のキーワード</h2>
-      <div id="keyword-grid" class="quick-grid"></div>
+      <<div id="keyword-grid" class="quick-grid"></div>
     </section>
 
     <script>
@@ -107,9 +107,9 @@ function renderKeywords(){
   if(!grid) return;
 
   const sorted = [...keywords]
-    .map(k => ({...k, count: getCount(k.name)}))  // countを追加
-    .sort((a,b) => b.count - a.count)             // 使用回数順にソート
-    .slice(0,6);                                  // TOP6だけ残す
+  .map(k => ({...k, count: getCount(k.name)}))
+  .sort((a,b) => b.count - a.count)
+  .slice(0,6);   // ← これが無いと全件出る                                  // TOP6だけ残す
 
   grid.innerHTML = ""; // 初期化
 
