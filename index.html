@@ -135,7 +135,21 @@ function renderKeywords(){
 // ページロード時に呼ぶ
 document.addEventListener("DOMContentLoaded", renderKeywords);
     </script>
-    
+
+    <!-- デバッグ用: 人気キーワードの履歴リセット -->
+<div style="text-align:center; margin-top:10px;">
+  <button onclick="resetKeywords()" style="background:#f8d7da; color:#721c24; padding:8px 16px; border:none; border-radius:6px;">
+    🔄 キーワード履歴リセット
+  </button>
+</div>
+
+<script>
+function resetKeywords(){
+  localStorage.clear();
+  alert("人気キーワードの履歴をリセットしました！");
+  renderKeywords(); // もう一度描画
+}
+</script>
         
     <div id="root"></div>
 
