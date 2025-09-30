@@ -92,31 +92,49 @@
         {name:"暫定球", icon:""},
         {name:"バンカー", icon:""},},
 
-      function getCount(key){
-        return parseInt(localStorage.getItem("kw_"+key) || "0");
-      }
+    function getCount(key){
+  // null の場合は 0 にする
+  return parseInt(localStorage.getItem("kw_"+key)) || 0;
+}
 
-      function addCount(key){
-        const now = getCount(key) + 1;
-        localStorage.setItem("kw_"+key, now);
-      }
+function addCount(key){
+  const now = getCount(key) + 1;
+  localStorage.setItem("kw_"+key, now);
+}
 
-      function renderKeywords(){
-        const sorted = [...keywords].sort((a,b)=> getCount(b.name) - getCount(a.name));
-        const grid = document.getElementById("keyword-grid");
-        if(!grid) return;
-        grid.innerHTML = "";
-        sorted.forEach(k=>{
-          const btn = document.createElement("a");
-          btn.className="quick-btn";
-          btn.href = "rules.html?cat="+encodeURIComponent(k.name);
-          btn.innerHTML = k.icon+" "+k.name;
-          btn.addEventListener("click", ()=> addCount(k.name));
-          grid.appendChild(btn);
-        });
-      }
+function renderKeywords(){
+  const grid = document.getElementById("keyword-grid");
+  if(!grid) return;
 
-      document.addEventListener("DOMContentLoaded", renderKeywords);
+  // 使用回数順にソートしてTOP6を取得
+  const sorted = [...keywords]
+    .map(k => ({...k, count: getCount(k.name)}))
+    .sort((a,b) => b.count - a.count)
+    .slice(0,6);
+
+  // 初期化
+  grid.innerHTML = "";
+
+  // ボタン生成
+  sorted.forEach(k => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.textContent = k.name;
+    btn.addEventListener("click", () => {
+      addCount(k.name);     // カウント追加
+      renderKeywords();     // 再描画
+      const filtered = rules.filter(r =>
+        (r.name && r.name.includes(k.name)) ||
+        (r.detail && r.detail.includes(k.name))
+      );
+      showResults(filtered);
+    });
+    grid.appendChild(btn);
+  });
+}
+
+// ページロード時に呼ぶ
+document.addEventListener("DOMContentLoaded", renderKeywords);
     </script>
     
         
