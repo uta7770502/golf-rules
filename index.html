@@ -122,11 +122,11 @@ function renderKeywords(){
     btn.addEventListener("click", () => {
       addCount(k.name);
       renderKeywords(); // 再描画
-      const filtered = rules.filter(r =>
-        (r.name && r.name.includes(k.name)) ||
-        (r.detail && r.detail.includes(k.name))
-      );
-      showResults(filtered);
+     // const filtered = rules.filter(r =>
+     // (r.name && r.name.includes(k.name)) ||
+     // (r.detail && r.detail.includes(k.name))
+     // );
+     // showResults(filtered);
     });
     grid.appendChild(btn);
   });
