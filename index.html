@@ -154,7 +154,7 @@
       btn.textContent = k.name;
       btn.addEventListener("click", () => {
         addCount(k.name);
-        renderKeywords(); // 再描画
+        window.location.href = "rules.html?keyword=" + encodeURIComponent(k.name);
 
         // rulesが読み込まれていればフィルタ
         const filtered = rules.filter(r =>
