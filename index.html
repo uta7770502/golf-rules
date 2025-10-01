@@ -154,12 +154,7 @@
       btn.textContent = k.name;
       btn.addEventListener("click", () => {
         addCount(k.name);
-        // 検索ボックスに反映して即時絞り込み
-    const input = document.getElementById('search-box');
-    if (input) input.value = k.name;
-    if (typeof handleChange === 'function') {
-      handleChange({ target: { value: k.name } });
-    } // 再描画
+        renderKeywords(); // 再描画
 
         // rulesが読み込まれていればフィルタ
         const filtered = rules.filter(r =>
@@ -268,12 +263,7 @@
 function resetKeywords(){
   localStorage.clear();
   alert("人気キーワードの履歴をリセットしました！");
-  // 検索ボックスに反映して即時絞り込み
-    const input = document.getElementById('search-box');
-    if (input) input.value = k.name;
-    if (typeof handleChange === 'function') {
-      handleChange({ target: { value: k.name } });
-    } // もう一度描画
+  renderKeywords(); // もう一度描画
 }
 </script>
         
