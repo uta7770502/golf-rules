@@ -54,39 +54,28 @@
     
 
     <style>
-    .rule-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin: 20px;
-    }
-    .rule-item {
-      background: #fff;
+    .accordion {
+      margin: 10px 0;
+      border-radius: 6px;
       border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 14px;
-      font-size: 15px;
-      line-height: 1.5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .accordion-header {
+      background: #f8f9fa;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
+      border-bottom: 1px solid #ddd;
     }
-    .rule-item:hover {
-      background: #f8fdf4;
-      transform: translateY(-2px);
+    .accordion-content {
+      display: none;
+      padding: 12px 16px;
+      background: #fff;
+      line-height: 1.6;
     }
-    .rule-category h2 {
-      font-size: 18px;
-      margin: 20px 10px 10px;
-      padding-left: 5px;
-      border-left: 4px solid #4CAF50;
-      color: #333;
-    }
-    .no-results {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
+    .accordion.active .accordion-content {
+      display: block;
     }
     </style>
     
@@ -260,5 +249,15 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch(e) { console.error(e); }
 });
 </script>
+
+    <script>
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const accordion = header.parentElement;
+          accordion.classList.toggle('active');
+        });
+      });
+    </script>
+    
 </body>
 </html>
