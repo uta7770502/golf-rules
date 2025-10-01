@@ -424,6 +424,20 @@
         }
       });
     });
+
+    // 初期展開カテゴリ
+    window.addEventListener("DOMContentLoaded", () => {
+      const defaultCategories = ["ペナルティ", "OB"]; // ← 最初に開くカテゴリ
+      document.querySelectorAll(".accordion").forEach(acc => {
+        const header = acc.querySelector(".accordion-header");
+        const content = acc.querySelector(".accordion-content");
+        if (defaultCategories.includes(header.textContent.trim())) {
+          header.classList.add("active");
+          acc.classList.add("active");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
   </script>
 </body>
 </html>
