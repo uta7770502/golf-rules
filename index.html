@@ -69,17 +69,6 @@
     </style></head>
   <body>
 
-    <!-- ルール一覧（2025最新ver.） -->
-  <section id="rule-list">
-    <button class="card">ルール一覧 (2025最新ver.)</button>
-  </section>
-
-  <!-- ルール検索ボックス -->
-  <section id="search-box">
-    <input type="text" id="searchInput" placeholder="ルールを検索">
-    <button onclick="searchRules()">検索</button>
-  </section>
-    
         <section id="search-section" class="home-block">
           <h2>ルールを検索</h2>
           <div class="search-wrap">
@@ -251,6 +240,19 @@
     };
 
     return (
+      <main>
+        <a href="rules.html">
+          <button className="card yellow-card">ルール一覧（2025 最新ver.）</button>
+        </a>
+        <div>
+          <input
+            type="text"
+            placeholder="ルールを検索…"
+            value={query}
+            onChange={handleChange}
+          />
+        </div>
+      </main>
     );
   }
 
