@@ -36,7 +36,7 @@
       line-height: 1.6;
     }
     .accordion.active .accordion-content {
-      max-height: 800px; /* 大きめに設定 */
+      max-height: 800px;
       padding: 10px 16px;
     }
     .rule-item { padding: 6px 0; border-bottom: 1px solid #eee; font-size: 15px; }
@@ -379,7 +379,8 @@
   <script>
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
-        header.classList.toggle('active');
+        header.parentElement.classList.toggle('active');
+        header.classList.toggle('active'); // ＋／− アイコン切替
       });
     });
   </script>
