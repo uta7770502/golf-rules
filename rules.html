@@ -27,8 +27,18 @@
     .accordion-header.active::after {
       content: "−";
     }
-    .accordion-content { display: none; padding: 10px 16px; background: #fff; line-height: 1.6; }
-    .accordion.active .accordion-content { display: block; }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      padding: 0 16px;
+      background: #fff;
+      line-height: 1.6;
+    }
+    .accordion.active .accordion-content {
+      max-height: 800px; /* 大きめに設定 */
+      padding: 10px 16px;
+    }
     .rule-item { padding: 6px 0; border-bottom: 1px solid #eee; font-size: 15px; }
     .rule-item:last-child { border-bottom: none; }
   </style>
@@ -370,12 +380,6 @@
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
         header.classList.toggle('active');
-        const content = header.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
       });
     });
   </script>
