@@ -142,7 +142,25 @@
   // ページロード時に呼ぶ
   document.addEventListener("DOMContentLoaded", renderKeywords);
 </script>
-  
+
+<style>
+/* 人気のキーワードを3列表示にする */
+#keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列に分ける */
+  gap: 10px; /* ボタン同士の余白 */
+  margin-top: 10px;
+}
+
+#keyword-grid .card {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+</style>
+    
 <!-- React部分 -->
 <script type="text/babel">
   function App() {
