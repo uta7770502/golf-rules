@@ -39,13 +39,32 @@
     .rule-item { display: block; padding: 6px 16px; border-bottom: 1px solid #eee; font-size: 15px; text-decoration: none; color: #333; }
     .rule-item:hover { background: #f0f0f0; }
     .rule-item:last-child { border-bottom: none; }
+    .back-top-btn {
+      display: block;
+      margin: 10px 16px;
+      padding: 10px 14px;
+      background: #16a34a;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .back-top-btn:hover {
+      background: #128c3b;
+    }
   </style>
 </head>
 <body>
   <header>📋 ゴルフルール一覧</header>
+
+  <!-- 🔹 上部の戻るボタン -->
+  <a href="index.html" class="back-top-btn">← トップページに戻る</a>
+
   <div class="search-container">
     <input type="text" id="search-box" placeholder="ルールを検索">
   </div>
+
   <div id="accordion-container">
 
     <div class="accordion">
@@ -377,6 +396,9 @@
     </div>
     
   </div>
+  <!-- 🔹 下部の戻るボタン -->
+  <a href="index.html" class="back-top-btn">← トップページに戻る</a>
+
   <script>
     // アコーディオン動作
     document.querySelectorAll('.accordion-header').forEach(header => {
@@ -421,20 +443,6 @@
           acc.classList.remove("active");
           acc.querySelector(".accordion-header").classList.remove("active");
           content.style.maxHeight = null;
-        }
-      });
-    });
-
-    // 初期展開カテゴリ
-    window.addEventListener("DOMContentLoaded", () => {
-      const defaultCategories = ["ペナルティ", "OB"]; // ← 最初に開くカテゴリ
-      document.querySelectorAll(".accordion").forEach(acc => {
-        const header = acc.querySelector(".accordion-header");
-        const content = acc.querySelector(".accordion-content");
-        if (defaultCategories.includes(header.textContent.trim())) {
-          header.classList.add("active");
-          acc.classList.add("active");
-          content.style.maxHeight = content.scrollHeight + "px";
         }
       });
     });

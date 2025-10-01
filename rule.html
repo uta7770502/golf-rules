@@ -4,39 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ルール詳細</title>
-  <style>
-    body { font-family: system-ui; margin: 0; padding: 0; background: #f5f5f5; }
-    header { background: #16a34a; color: #fff; padding: 1rem; font-size: 20px; font-weight: bold; text-align: center; }
-    main { padding: 20px; }
-    h1 { font-size: 22px; margin-bottom: 10px; }
-    p { font-size: 16px; line-height: 1.6; }
-    a { display: inline-block; margin-top: 20px; text-decoration: none; color: #16a34a; font-weight: bold; }
-  </style>
 </head>
 <body>
-  <header>📖 ルール詳細</header>
-  <main>
-    <h1 id="rule-title"></h1>
-    <p id="rule-description"></p>
-    <a href="rules.html">← 一覧に戻る</a>
-  </main>
-
-  <script>
-    async function loadRule() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      const response = await fetch("rules.json");
-      const rules = await response.json();
-      const rule = rules.find(r => r.id == id);
-
-      if (rule) {
-        document.getElementById("rule-title").textContent = rule.name;
-        document.getElementById("rule-description").textContent = rule.description || "説明がありません";
-      } else {
-        document.getElementById("rule-title").textContent = "ルールが見つかりません";
-      }
-    }
-    loadRule();
-  </script>
+  <h1>ルール詳細ページ（例）</h1>
+  <p>rule.html?id=1 のようにアクセスしてください。</p>
+  <a href="rules.html">← 一覧に戻る</a>
 </body>
 </html>
