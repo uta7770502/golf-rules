@@ -222,29 +222,5 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch(e) { console.error(e); }
 });
 </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const params = new URLSearchParams(window.location.search);
-  const keyword = params.get("keyword");
-
-  if (keyword) {
-    const searchBox = document.getElementById("search-box");
-    if (searchBox) searchBox.value = keyword;
-    filterRules(keyword);
-  }
-});
-
-function filterRules(keyword) {
-  const rules = document.querySelectorAll(".rule-item");
-  rules.forEach(rule => {
-    if (rule.textContent.includes(keyword)) {
-      rule.style.display = "block";
-    } else {
-      rule.style.display = "none";
-    }
-  });
-}
-</script>
 </body>
 </html>
