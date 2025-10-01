@@ -17,18 +17,6 @@
     }
     .rule-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; color: #16a34a; }
     .rule-description { font-size: 16px; line-height: 1.6; color: #333; }
-    #fav-btn {
-      display: block;
-      margin: 20px auto;
-      background: #facc15;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #fav-btn:hover { background: #eab308; }
     .back-btn {
       display: block;
       position: fixed;
@@ -54,7 +42,6 @@
     <div class="rule-card">
       <h1 id="rule-title" class="rule-title"></h1>
       <p id="rule-description" class="rule-description"></p>
-      <button id="fav-btn">⭐️ お気に入りに追加</button>
     </div>
   </main>
   <a href="rules.html" class="back-btn">← 一覧に戻る</a>
@@ -70,18 +57,6 @@
       if (rule) {
         document.getElementById("rule-title").textContent = rule.name;
         document.getElementById("rule-description").textContent = rule.description || "説明がありません";
-
-        // お気に入り登録処理
-        document.getElementById("fav-btn").addEventListener("click", () => {
-          let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-          if (!favorites.includes(id)) {
-            favorites.push(id);
-            localStorage.setItem("favorites", JSON.stringify(favorites));
-            alert("お気に入りに追加しました！");
-          } else {
-            alert("すでにお気に入りに入っています。");
-          }
-        });
       } else {
         document.getElementById("rule-title").textContent = "ルールが見つかりません";
       }
